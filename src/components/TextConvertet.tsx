@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Button from './Loader';
 import Loader from './Loader';
 
 const TextConverter = () => {
@@ -14,9 +13,28 @@ const TextConverter = () => {
     setInputText(event.target.value);
   };
 
-  const handleConvert = () => {
-    setPositiveText(`😊 ${inputText}`);
-    setNegativeText(`😢 ${inputText}`);
+  const handleConvert = async () => {
+    if (!inputText.trim()) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/convert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: inputText }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setPositiveText(data.positiveText);
+        setNegativeText(data.negativeText);
+      } else {
+        console.error("변환 실패:", data.error);
+      }
+    } catch (error) {
+      console.error("API 요청 오류:", error);
+    }
+    setLoading(false);
   };
 
   return (
