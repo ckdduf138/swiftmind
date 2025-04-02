@@ -41,15 +41,20 @@ const TextConverter = () => {
     <div className="flex flex-col flex-grow items-center p-4 sm:p-6 md:p-8 gap-6">
       {loading && <Loader />}
 
-      <div className="flex flex-col w-full max-w-3xl items-center p-2 sm:p-4 gap-4 bg-gray-50 rounded-lg">
+      <div className="flex flex-col relative w-full max-w-3xl items-center p-2 sm:p-4 gap-4 bg-gray-50 rounded-lg">
         <textarea
           value={inputText}
           onChange={handleInputChange}
           placeholder="문장을 입력하세요."
           rows={4}
+          maxLength={500}
           className="w-full max-w-3xl p-3 border border-black-300 rounded-lg shadow-md bg-white-100 resize-none
           focus:outline focus:outline-2 focus:outline-gray-500 focus:border-gray-300"
         />
+        <div className="absolute bottom-2 right-3 text-gray-500 text-sm">
+          {inputText.length} / 500
+        </div>
+
         <button
           onClick={handleConvert}
           disabled={loading}
