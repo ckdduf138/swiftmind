@@ -18,19 +18,23 @@ const TextConverter = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("/api/convert", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: inputText }),
-      });
+      // const response = await fetch("/api/convert", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ text: inputText }),
+      // });
 
-      const data = await response.json();
-      if (response.ok) {
-        setPositiveText(data.positiveText);
-        setNegativeText(data.negativeText);
-      } else {
-        console.error("변환 실패:", data.error);
-      }
+      // const data = await response.json();
+      // if (response.ok) {
+      //   setPositiveText(data.positiveText);
+      //   setNegativeText(data.negativeText);
+      // } else {
+      //   console.error("변환 실패:", data.error);
+      // }
+      
+      setPositiveText(inputText);
+      setNegativeText(inputText);
+
     } catch (error) {
       console.error("API 요청 오류:", error);
     }
@@ -66,14 +70,30 @@ const TextConverter = () => {
 
       {/* 결과 필드 */}
       <div className="w-full flex flex-col items-center p-4 sm:p-6 md:p-8 gap-6">
-        <textarea className="w-full max-w-3xl p-3 border border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
-          focus:outline focus:outline-2 focus:outline-blue-500 focus:border-blue-300" 
-          value={positiveText} readOnly />
+        <div className="relative w-full max-w-3xl">
+          <span className="absolute -left-4 -top-4 text-3xl text-blue-500">😀</span>
+          <textarea
+            className="w-full p-4 border border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
+            focus:outline focus:outline-2 focus:outline-blue-500 focus:border-blue-300"
+            rows={4}
+            value={positiveText}
+            readOnly
+          />
+        </div>
 
-        <textarea className="w-full max-w-3xl p-3 border border-red-300 rounded-lg shadow-md bg-red-100 resize-none
-          focus:outline focus:outline-2 focus:outline-red-500 focus:border-red-300" 
-          value={negativeText} readOnly />
+        <div className="relative w-full max-w-3xl">
+          <span className="absolute -left-4 -top-4 text-3xl text-red-500">☹️</span>
+
+          <textarea
+            className="w-full p-4 border border-red-300 rounded-lg shadow-md bg-red-100 resize-none
+            focus:outline focus:outline-2 focus:outline-red-500 focus:border-red-300"
+            rows={4}
+            value={negativeText}
+            readOnly
+          />
+        </div>
       </div>
+
     </div>
     
   );
