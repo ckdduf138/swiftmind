@@ -15,7 +15,7 @@ const PROMPTS = {
     응답 예시: {"positive": "긍정적 문장", "negative": "부정적 문장"}`,
 };
 
-export const POST = async (req: NextRequest, res: NextApiResponse) => {
+export const POST = async (req: NextRequest) => {
   try {
     const { text } = await req.json();
     if (!text) {
@@ -34,6 +34,7 @@ export const POST = async (req: NextRequest, res: NextApiResponse) => {
     try {
       parsedResponse = JSON.parse(response.choices[0]?.message?.content || "{}");
     } catch (error) {
+      console.error("JSON 파싱 오류:", error)
       return NextResponse.json({ error: "OpenAI 응답이 올바른 JSON 형식이 아닙니다." }, { status: 500 });
     }
 
@@ -42,6 +43,7 @@ export const POST = async (req: NextRequest, res: NextApiResponse) => {
 
     return NextResponse.json({ positiveText, negativeText });
   } catch (error) {
+    console.error("OpenAI API 요청 실패:", error);
     return NextResponse.json({ error: "OpenAI API 요청 실패" + error }, { status: 500 });
   }
 };
