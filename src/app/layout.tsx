@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'SwiftMind - 문장 변환기',
+  title: 'SwiftMind',
   description: '긍정적/부정적 문장 변환 웹사이트',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
