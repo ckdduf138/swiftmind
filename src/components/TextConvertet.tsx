@@ -1,80 +1,58 @@
 'use client';
 
 import { useState } from 'react';
+import Button from './Loader';
+import Loader from './Loader';
 
 const TextConverter = () => {
   const [inputText, setInputText] = useState<string>('');
-  const [convertedText, setConvertedText] = useState<string | null>(null);
-  const [conversionType, setConversionType] = useState<'positive' | 'negative'>('positive');
+  const [positiveText, setPositiveText] = useState("");
+  const [negativeText, setNegativeText] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(event.target.value);
   };
 
-  const handleConversionTypeChange = (type: 'positive' | 'negative') => {
-    setConversionType(type);
-  };
-
-  const handleConvertText = async () => {
-    setLoading(true);
-    try {
-      let result = '';
-      if (conversionType === 'positive') {
-        result = `긍정적 변환: ${inputText}!!`;
-      } else {
-        result = `부정적 변환: ${inputText}...`;
-      }
-      setConvertedText(result);
-    } catch (error) {
-      setConvertedText('변환 중 오류가 발생했습니다.');
-    } finally {
-      setLoading(false);
-    }
+  const handleConvert = () => {
+    setPositiveText(`😊 ${inputText}`);
+    setNegativeText(`😢 ${inputText}`);
   };
 
   return (
-    <div className="flex flex-col flex-grow items-center justify-center p-4 sm:p-6 md:p-8">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-6">문장 변환기</h2>
-      <textarea
-        value={inputText}
-        onChange={handleInputChange}
-        placeholder="문장을 입력하세요."
-        rows={4}
-        className="w-full max-w-lg p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-primary mb-4 sm:mb-6"
-      />
-      <div className="flex flex-col sm:flex-row justify-center items-center sm:space-x-4 mb-4">
+    <div className="flex flex-col flex-grow items-center p-4 sm:p-6 md:p-8 gap-6">
+      {loading && <Loader />}
+
+      <div className="flex flex-col w-full max-w-3xl items-center p-2 sm:p-4 gap-4 bg-gray-50 rounded-lg">
+        <textarea
+          value={inputText}
+          onChange={handleInputChange}
+          placeholder="문장을 입력하세요."
+          rows={4}
+          className="w-full max-w-3xl p-3 border border-black-300 rounded-lg shadow-md bg-white-100 resize-none
+          focus:outline focus:outline-2 focus:outline-gray-500 focus:border-gray-300"
+        />
         <button
-          className={`px-6 py-2 rounded-md text-white transition-colors duration-300 ${
-            conversionType === 'positive' ? 'bg-primary' : 'bg-gray-400'
-          } hover:bg-primary mb-2 sm:mb-0`}
-          onClick={() => handleConversionTypeChange('positive')}
+          onClick={handleConvert}
+          disabled={loading}
+          className="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-500 disabled:bg-gray-400 transition-colors cursor-pointer"
         >
-          긍정적 문장
-        </button>
-        <button
-          className={`px-6 py-2 rounded-md text-white transition-colors duration-300 ${
-            conversionType === 'negative' ? 'bg-primary' : 'bg-gray-400'
-          } hover:bg-primary`}
-          onClick={() => handleConversionTypeChange('negative')}
-        >
-          부정적 문장
+          변환하기
         </button>
       </div>
-      <button
-        onClick={handleConvertText}
-        disabled={loading}
-        className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 transition-colors"
-      >
-        {loading ? '변환 중...' : '변환하기'}
-      </button>
-      {convertedText && (
-        <div className="mt-6 p-4 bg-white shadow-md rounded-md w-full max-w-lg">
-          <h3 className="text-2xl font-semibold mb-2">변환된 문장:</h3>
-          <p className="text-lg">{convertedText}</p>
-        </div>
-      )}
+
+      {/* 결과 필드 */}
+      <div className="w-full flex flex-col items-center p-4 sm:p-6 md:p-8 gap-6">
+        <textarea className="w-full max-w-3xl p-3 border border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
+          focus:outline focus:outline-2 focus:outline-blue-500 focus:border-blue-300" 
+          value={positiveText} readOnly />
+
+        <textarea className="w-full max-w-3xl p-3 border border-red-300 rounded-lg shadow-md bg-red-100 resize-none
+          focus:outline focus:outline-2 focus:outline-red-500 focus:border-red-300" 
+          value={negativeText} readOnly />
+      </div>
     </div>
+    
   );
 };
 
