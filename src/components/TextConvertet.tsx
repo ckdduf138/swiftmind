@@ -52,8 +52,8 @@ const TextConverter = () => {
           placeholder="문장을 입력하세요."
           rows={4}
           maxLength={500}
-          className="w-full max-w-3xl p-3 border border-black-300 rounded-lg shadow-md bg-white-100 resize-none
-          focus:outline focus:outline-2 focus:outline-gray-500 focus:border-gray-300"
+          className="w-full max-w-3xl p-3 border-2 border-black-300 rounded-lg shadow-md bg-white-100 resize-none
+          focus:outline focus:outline-1 focus:outline-black-300 focus:border-black-300"
         />
         <div className="absolute bottom-2 right-3 text-gray-500 text-sm">
           {inputText.length} / 500
@@ -73,8 +73,8 @@ const TextConverter = () => {
         <div className="relative w-full max-w-3xl">
           <span className="absolute -left-4 -top-4 text-3xl text-blue-500">😀</span>
           <textarea
-            className="w-full p-4 border border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
-            focus:outline focus:outline-2 focus:outline-blue-500 focus:border-blue-300"
+            className="w-full p-4 border-2 border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
+            focus:outline focus:outline-1 focus:outline-blue-300 focus:border-blue-300"
             rows={4}
             value={positiveText}
             readOnly
@@ -85,8 +85,8 @@ const TextConverter = () => {
           <span className="absolute -left-4 -top-4 text-3xl text-red-500">☹️</span>
 
           <textarea
-            className="w-full p-4 border border-red-300 rounded-lg shadow-md bg-red-100 resize-none
-            focus:outline focus:outline-2 focus:outline-red-500 focus:border-red-300"
+            className="w-full p-4 border-2 border-red-300 rounded-lg shadow-md bg-red-100 resize-none
+            focus:outline focus:outline-1 focus:outline-red-300 focus:border-red-300"
             rows={4}
             value={negativeText}
             readOnly
