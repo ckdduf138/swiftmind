@@ -38,6 +38,17 @@ const TextConverter = () => {
     setLoading(false);
   };
 
+  const handleCopy = async (text: string) => {
+    try {
+      if (text !== '') {
+        await navigator.clipboard.writeText(text);
+      } else {
+      }
+    } catch (error) {
+      console.error("클립보드에 복사하는데 실패했어요.", error);
+    }
+  };
+
   return (
     <div className="flex flex-col flex-grow items-center p-4 sm:p-6 md:p-8 gap-6">
       {loading && <Loader />}
@@ -69,6 +80,7 @@ const TextConverter = () => {
       <div className="w-full flex flex-col items-center p-4 sm:p-6 md:p-8 gap-6">
         <div className="relative w-full max-w-3xl">
           <span className="absolute -left-4 -top-4 text-3xl text-blue-500">😀</span>
+          <img className="absolute right-2 top-2 cursor-pointer" src='/images/copy-right.svg' alt='copy' onClick={() => handleCopy(positiveText)}></img>
           <textarea
             className="w-full p-4 border-2 border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
             focus:outline focus:outline-1 focus:outline-blue-300 focus:border-blue-300"
@@ -80,7 +92,7 @@ const TextConverter = () => {
 
         <div className="relative w-full max-w-3xl">
           <span className="absolute -left-4 -top-4 text-3xl text-red-500">☹️</span>
-
+          <img className="absolute right-2 top-2 cursor-pointer" src='/images/copy-right.svg' alt='copy' onClick={() => handleCopy(negativeText)}></img>
           <textarea
             className="w-full p-4 border-2 border-red-300 rounded-lg shadow-md bg-red-100 resize-none
             focus:outline focus:outline-1 focus:outline-red-300 focus:border-red-300"
