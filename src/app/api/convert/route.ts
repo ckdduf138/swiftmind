@@ -5,9 +5,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const ALLOWED_ORIGINS = ['http://localhost:3000'];
-
-const LIMITED_COUNT = 30;
+const ALLOWED_ORIGINS = ['http://localhost:3000', 'https://swiftmind.vercel.app'];
 
 const PROMPTS = {
   SYSTEM: `너는 텍스트 감정 변환기야. 
