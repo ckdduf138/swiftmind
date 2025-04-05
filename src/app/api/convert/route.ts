@@ -22,7 +22,7 @@ export const POST = async (req: NextRequest) => {
 
     const prompt = getRandomPrompt();
     const systemMessage = prompt.SYSTEM;
-    const userMessage = prompt.USER("난 맨날 실수만 해");
+    const userMessage = prompt.USER(text);
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
