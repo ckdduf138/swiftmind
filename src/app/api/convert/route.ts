@@ -1,3 +1,4 @@
+import { getRandomPrompt } from "@/utils/prompts";
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
 
@@ -38,11 +39,15 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ error: '텍스트를 입력하세요.' }, { status: 400 });
     }
 
+    const prompt = getRandomPrompt();
+    const systemMessage = prompt.SYSTEM;
+    const userMessage = prompt.USER("난 맨날 실수만 해");
+
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: PROMPTS.SYSTEM },
-        { role: "user", content: PROMPTS.USER(text) },
+        { role: "system", content: systemMessage },
+        { role: "user", content: userMessage },
       ],
     });
 
