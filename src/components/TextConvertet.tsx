@@ -18,22 +18,22 @@ const TextConverter = () => {
 
     setLoading(true);
     try {
-      // const response = await fetch("/api/convert", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ text: inputText }),
-      // });
+      const response = await fetch("/api/convert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: inputText }),
+      });
 
-      // const data = await response.json();
-      // if (response.ok) {
-      //   setPositiveText(data.positiveText);
-      //   setNegativeText(data.negativeText);
-      // } else {
-      //   console.error("변환 실패:", data.error);
-      // }
+      const data = await response.json();
+      if (response.ok) {
+        setPositiveText(data.positiveText);
+        setNegativeText(data.negativeText);
+      } else {
+        console.error("변환 실패:", data.error);
+      }
       
-      setPositiveText(inputText);
-      setNegativeText(inputText);
+      // setPositiveText(inputText);
+      // setNegativeText(inputText);
 
     } catch (error) {
       console.error("API 요청 오류:", error);
