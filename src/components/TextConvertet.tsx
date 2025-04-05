@@ -60,8 +60,8 @@ const TextConverter = () => {
           placeholder="문장을 입력하세요."
           rows={4}
           maxLength={500}
-          className="w-full max-w-3xl p-3 border-2 border-black-300 rounded-lg shadow-md bg-white-100 resize-none
-          focus:outline focus:outline-1 focus:outline-black-300 focus:border-black-300"
+          className="w-full max-w-3xl p-3 border-2 border-black-300 rounded-lg shadow-md bg-white-100 resize-none 
+          focus:outline focus:outline-1 focus:outline-green-300 focus:border-green-300"
         />
         <div className="absolute bottom-2 right-3 text-gray-500 text-sm">
           {inputText.length} / 500
@@ -82,7 +82,7 @@ const TextConverter = () => {
           <span className="absolute -left-4 -top-4 text-3xl text-blue-500">😀</span>
           <img className="absolute right-2 top-2 cursor-pointer" src='/images/copy-right.svg' alt='copy' onClick={() => handleCopy(positiveText)}></img>
           <textarea
-            className="w-full p-4 border-2 border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
+            className="w-full p-6 border-2 border-blue-300 rounded-lg shadow-md bg-blue-100 resize-none
             focus:outline focus:outline-1 focus:outline-blue-300 focus:border-blue-300"
             rows={4}
             value={positiveText}
@@ -94,7 +94,7 @@ const TextConverter = () => {
           <span className="absolute -left-4 -top-4 text-3xl text-red-500">☹️</span>
           <img className="absolute right-2 top-2 cursor-pointer" src='/images/copy-right.svg' alt='copy' onClick={() => handleCopy(negativeText)}></img>
           <textarea
-            className="w-full p-4 border-2 border-red-300 rounded-lg shadow-md bg-red-100 resize-none
+            className="w-full p-6 border-2 border-red-300 rounded-lg shadow-md bg-red-100 resize-none
             focus:outline focus:outline-1 focus:outline-red-300 focus:border-red-300"
             rows={4}
             value={negativeText}
