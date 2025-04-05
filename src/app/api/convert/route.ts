@@ -5,20 +5,27 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+const ALLOWED_ORIGINS = ['http://localhost:3000'];
+
+const LIMITED_COUNT = 30;
+
 const PROMPTS = {
-  SYSTEM: "너는 텍스트 감정 변환기야. 입력된 문장을 긍정적 또는 부정적으로 변환해줘.",
+  SYSTEM: `너는 텍스트 감정 변환기야. 
+    입력된 문장의 말투와 어조를 최대한 유지하면서, 같은 문장을 긍정적 혹은 부정적인 감정으로 바꿔줘.
+    반드시 JSON 형식으로 응답해.`,
   USER: (text: string) =>
-    `다음 문장을 긍정적, 부정적 두 가지로 변환해줘. 
-    JSON 형식으로 정확히 응답해. 
+    `다음 문장을 긍정적, 부정적 두 가지 감정으로 바꿔줘. 
+    문장의 말투, 문체, 어조는 그대로 유지해야 해. 
+    반드시 JSON 형식으로 응답해.
     문장: "${text}" 
     응답 예시: {"positive": "긍정적 문장", "negative": "부정적 문장"}`,
 };
 
 export const POST = async (req: NextRequest) => {
   try {
-    const secret = req.headers.get("x-api-key");
-    if (secret !== process.env.NEXT_PUBLIC_CONVERT_API_KEY) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const origin = req.headers.get('origin');
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      return NextResponse.json({ error: '허용되지 않은 요청입니다.' }, { status: 403 });
     }
 
     const { text } = await req.json();

@@ -20,10 +20,7 @@ const TextConverter = () => {
     try {
       const response = await fetch("/api/convert", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": process.env.NEXT_PUBLIC_CONVERT_API_KEY || "",
-        },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ text: inputText }),
       });
 
