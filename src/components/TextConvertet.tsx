@@ -20,7 +20,10 @@ const TextConverter = () => {
     try {
       const response = await fetch("/api/convert", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.NEXT_PUBLIC_CONVERT_API_KEY || "",
+        },
         body: JSON.stringify({ text: inputText }),
       });
 
@@ -31,9 +34,6 @@ const TextConverter = () => {
       } else {
         console.error("변환 실패:", data.error);
       }
-      
-      // setPositiveText(inputText);
-      // setNegativeText(inputText);
 
     } catch (error) {
       console.error("API 요청 오류:", error);
