@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swiftmind.vercel.app/sitemap.xml
