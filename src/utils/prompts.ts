@@ -1,3 +1,5 @@
+import { MBTI } from "@/types/commons";
+
 type Prompt = {
   SYSTEM: string;
   USER: (text: string, mbti: MBTI) => string;
