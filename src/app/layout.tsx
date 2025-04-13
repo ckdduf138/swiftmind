@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SwiftMind | 감정을 긍정적으로 리프레이밍하는 AI 도구",
+  title: "SwiftMind | MBTI 기반 문장을 분석하여 리프레이밍하는 AI 도구",
   description:
     "SwiftMind는 사용자가 입력한 문장을 감정 분석 후, 긍정적인 표현과 함께 MBTI 성격 유형을 고려하여 자연스러운 리프레이밍을 제공합니다.",
   metadataBase: new URL("https://swiftmind.vercel.app"),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "MBTI 성격 유형 감정 리프레이밍",
   ],
   openGraph: {
-    title: "SwiftMind | 감정을 긍정적으로 리프레이밍하는 AI 도구",
+    title: "SwiftMind | MBTI 기반 문장을 분석하여 리프레이밍하는 AI 도구",
     description:
       "SwiftMind는 사용자가 입력한 문장을 감정 분석 후, 긍정적인 표현과 함께 MBTI 성격 유형을 고려하여 자연스러운 리프레이밍을 제공합니다.",
     url: "https://swiftmind.vercel.app",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SwiftMind | 감정을 긍정적으로 리프레이밍하는 AI 도구",
+    title: "SwiftMind | MBTI 기반 문장을 분석하여 리프레이밍하는 AI 도구",
     description:
       "SwiftMind는 사용자가 입력한 문장을 감정 분석 후, 긍정적인 표현과 함께 MBTI 성격 유형을 고려하여 자연스러운 리프레이밍을 제공합니다.",
     images: ["/images/og-image.png"],
