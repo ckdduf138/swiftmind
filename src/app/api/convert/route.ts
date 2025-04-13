@@ -15,14 +15,15 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ error: '허용되지 않은 요청입니다.' }, { status: 403 });
     }
 
-    const { text } = await req.json();
+    const { text, mbti  } = await req.json();
+
     if (!text) {
       return NextResponse.json({ error: '텍스트를 입력하세요.' }, { status: 400 });
     }
 
     const prompt = getRandomPrompt();
     const systemMessage = prompt.SYSTEM;
-    const userMessage = prompt.USER(text);
+    const userMessage = prompt.USER(text, mbti);
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",

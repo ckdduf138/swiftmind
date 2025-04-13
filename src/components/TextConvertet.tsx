@@ -2,11 +2,16 @@
 
 import { useState } from 'react';
 import Loader from './Loader';
+import MBTISelect from './MbtiSelect';
 
 const TextConverter = () => {
   const [inputText, setInputText] = useState<string>('');
+
+  const [selectedMbti, setSelectedMbti] = useState<string>('');
+
   const [positiveText, setPositiveText] = useState("");
   const [negativeText, setNegativeText] = useState("");
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -21,10 +26,14 @@ const TextConverter = () => {
       const response = await fetch("/api/convert", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ text: inputText }),
+        body: JSON.stringify({ 
+          text: inputText,
+          mbti: selectedMbti
+        }),
       });
 
       const data = await response.json();
+
       if (response.ok) {
         setPositiveText(data.positiveText);
         setNegativeText(data.negativeText);
@@ -63,6 +72,9 @@ const TextConverter = () => {
           className="w-full max-w-3xl p-3 border-2 border-black-300 rounded-lg shadow-md bg-white-100 resize-none 
           focus:outline focus:outline-1 focus:outline-green-300 focus:border-green-300"
         />
+
+        <MBTISelect selectedMbti={selectedMbti} setSelectedMbti={setSelectedMbti} />
+
         <div className="absolute bottom-2 right-3 text-gray-500 text-sm">
           {inputText.length} / 500
         </div>
