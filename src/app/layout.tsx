@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "SwiftMind | 감정을 긍정적으로 리프레이밍하는 AI 도구",
   description:
-    "SwiftMind는 문장의 감정을 분석하고, 부정문을 긍정적으로 또는 공감형 표현으로 자연스럽게 리프레이밍해주는 AI 감정 문장 전환 도구입니다.",
+    "SwiftMind는 사용자가 입력한 문장을 감정 분석 후, 긍정적인 표현과 함께 MBTI 성격 유형을 고려하여 자연스러운 리프레이밍을 제공합니다.",
   metadataBase: new URL("https://swiftmind.vercel.app"),
   icons: {
     icon: "/images/favicon.svg",
@@ -28,11 +28,14 @@ export const metadata: Metadata = {
     "AI 감정코칭 서비스",
     "AI 기반 심리 도구",
     "자기개선 보조도구",
+    "MBTI 성격 분석",
+    "MBTI 기반 감정 표현 생성",
+    "MBTI 성격 유형 감정 리프레이밍",
   ],
   openGraph: {
     title: "SwiftMind | 감정을 긍정적으로 리프레이밍하는 AI 도구",
     description:
-      "SwiftMind는 문장의 감정을 분석하고, 부정문을 긍정적으로 또는 공감형 표현으로 자연스럽게 리프레이밍해주는 AI 감정 문장 전환 도구입니다.",
+      "SwiftMind는 사용자가 입력한 문장을 감정 분석 후, 긍정적인 표현과 함께 MBTI 성격 유형을 고려하여 자연스러운 리프레이밍을 제공합니다.",
     url: "https://swiftmind.vercel.app",
     siteName: "SwiftMind",
     images: [
@@ -50,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SwiftMind | 감정을 긍정적으로 리프레이밍하는 AI 도구",
     description:
-      "SwiftMind는 문장의 감정을 분석하고, 부정문을 긍정적으로 또는 공감형 표현으로 자연스럽게 리프레이밍해주는 AI 감정 문장 전환 도구입니다.",
+      "SwiftMind는 사용자가 입력한 문장을 감정 분석 후, 긍정적인 표현과 함께 MBTI 성격 유형을 고려하여 자연스러운 리프레이밍을 제공합니다.",
     images: ["/images/og-image.png"],
   },
   authors: [{ name: "SwiftMind", url: "https://swiftmind.vercel.app" }],
